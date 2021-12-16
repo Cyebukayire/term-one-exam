@@ -10,6 +10,7 @@ import rw.ac.rca.termOneExam.domain.City;
 import rw.ac.rca.termOneExam.dto.CreateCityDTO;
 import rw.ac.rca.termOneExam.repository.ICityRepository;
 
+//@Service
 @Service
 public class CityService {
 
@@ -17,24 +18,22 @@ public class CityService {
 	private ICityRepository cityRepository;
 	
 	public Optional<City> getById(long id) {
-		
 		return cityRepository.findById(id);
 	}
 
 	public List<City> getAll() {
-		
 		return cityRepository.findAll();
 	}
 
 	public boolean existsByName(String name) {
-		
 		return cityRepository.existsByName(name);
 	}
 
 	public City save(CreateCityDTO dto) {
 		City city =  new City(dto.getName(), dto.getWeather());
+		Double fahrenheit = (dto.getWeather() - 32)* 9/5;
+		city.setFahrenheit(fahrenheit);
 		return cityRepository.save(city);
 	}
-	
 
 }

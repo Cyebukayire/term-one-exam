@@ -47,7 +47,7 @@ public class City {
 		this.id = id;
 	}
 
-	public String getName() {
+	public Boolean getName() {
 		return name;
 	}
 
