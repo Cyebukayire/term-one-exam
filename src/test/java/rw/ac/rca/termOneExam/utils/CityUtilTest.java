@@ -46,13 +46,13 @@ public class CityUtilTest {
     public void cities_have_musanze_and_kigali() {
         ArrayList<City> cities =  spy(ArrayList.class);
 
-        City musanze = new City("Kirehe",30);
-        City kigali = new City("Rutsiro",40);
+        City musanze = new City("Kigali",30);
+        City kigali = new City("Musanze",40);
 
         cities.add(musanze);
         cities.add(kigali);
 
-        assertThat(cities).extracting(City::getName).contains("Kirehe","Rutsiro");
+        assertThat(cities).extracting(City::getName).contains("Musanze","Kigali");
     }
 
 
@@ -63,8 +63,8 @@ public class CityUtilTest {
         when(arrayListMock.size()).thenReturn(5);
         assertEquals(5, arrayListMock.size());
 
-        when(arrayListMock.get(0)).thenReturn(new City("Huye",30));
-        assertEquals("Huye", arrayListMock.get(0).getName());
+        when(arrayListMock.get(0)).thenReturn(new City("Kigali",30));
+        assertEquals("Kigali", arrayListMock.get(0).getName());
 
         verify(arrayListMock, times(1)).get(0);
 
@@ -74,14 +74,14 @@ public class CityUtilTest {
     public void testSpying() {
 
         ArrayList<City> arrayListSpy =  spy(ArrayList.class);
-        arrayListSpy.add(new City("Ngoma",30));
+        arrayListSpy.add(new City("Kigali",30));
 
-        arrayListSpy.add(new City("Rusizi",40));
+        arrayListSpy.add(new City("Musanze",40));
 
 
         when(arrayListSpy.size()).thenReturn(5);
         assertEquals(5, arrayListSpy.size());
 
-        verify(arrayListSpy).add(new City("Ruhango",40));
+        verify(arrayListSpy).add(new City("Musanze",40));
     }
 }
